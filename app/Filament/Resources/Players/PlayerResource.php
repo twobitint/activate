@@ -20,6 +20,8 @@ class PlayerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $navigationLabel = 'Roster';
+
     public static function table(Table $table): Table
     {
         return PlayersTable::configure($table);
