@@ -4,6 +4,9 @@ namespace App\Filament\Pages;
 
 use App\Models\Matchup;
 use Filament\Pages\Page;
+use Filament\Support\Enums\TextSize;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -31,39 +34,45 @@ class Week extends Page implements HasTable
         return $table
             ->query(Matchup::query()->where('week', 1))
             ->columns([
-
-                TextColumn::make('game.room')
-                    ->label('Room')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('game.name')
-                    ->label('Game')
-                    ->description(fn ($record) => 'Level '.$record->level)
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('level')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('skilledPlayers')
-                    ->label('Skilled players')
-                    ->badge()
-                    ->formatStateUsing(fn ($state) => $state->name)
-                    ->color(fn ($state) => $state->pivot->skill->getColor())
-                    ->listWithLineBreaks(),
-                TextColumn::make('unskilledPlayers')
-                    ->label('Iffy players')
-                    ->badge()
-                    ->formatStateUsing(fn ($state) => $state->name)
-                    ->color(fn ($state) => $state->pivot->skill->getColor())
-                    ->listWithLineBreaks(),
-                // TextColumn::make('game.optimal_players')
-                //     ->label('Optimal Players')
-                //     ->sortable(),
-                TextColumn::make('participants')
-                    ->badge()
-                    ->formatStateUsing(fn ($state) => $state->name)
-                    ->color(fn ($state) => $state->pivot->skill->getColor())
-                    ->listWithLineBreaks(),
+                Split::make([
+                    Split::make([
+                        TextColumn::make('game.room')
+                            ->label('Room')
+                            //->searchable()
+                            ->sortable(),
+                        Stack::make([
+                            TextColumn::make('game.name')
+                                ->label('Game')
+                                ->sortable(),
+                            TextColumn::make('level')
+                                ->formatStateUsing(fn ($state) => 'Level '.$state)
+                                ->color('gray')
+                                ->size(TextSize::ExtraSmall)
+                                ->sortable(),
+                        ]),
+                    ])->from('md'),
+                    // TextColumn::make('skilledPlayers')
+                    //     ->description('Players rated Good or Excellent')
+                    //     ->label('Skilled players')
+                    //     ->badge()
+                    //     ->formatStateUsing(fn ($state) => $state->name)
+                    //     ->color(fn ($state) => $state->pivot->skill->getColor())
+                    //     ->listWithLineBreaks()
+                    //     ->visibleFrom('md'),
+                    // TextColumn::make('unskilledPlayers')
+                    //     ->label('Iffy players')
+                    //     ->badge()
+                    //     ->formatStateUsing(fn ($state) => $state->name)
+                    //     ->color(fn ($state) => $state->pivot->skill->getColor())
+                    //     ->listWithLineBreaks()
+                    //     ->visibleFrom('md'),
+                    TextColumn::make('participants')
+                        ->badge()
+                        ->formatStateUsing(fn ($state) => $state->name)
+                        ->color(fn ($state) => $state->pivot->skill->getColor())
+                        ->wrap(),
+                        // ->listWithLineBreaks(),
+                ]),
             ])
             ->paginated(false);
     }
