@@ -3,29 +3,29 @@ const fs = require('fs');
 
 (async function scrape() {
 
-  const players = [
-    'whumps',
-    'rainbow_spice',
-    'frostea',
-    'jtep',
-    'twongx',
-  ];
+    let players = [];
 
-  for (const player of players) {
-    let driver = await new Builder().forBrowser(Browser.CHROME).build();
+    if (process.argv.length > 2) {
+        players = process.argv.slice(2);
+    } else {
+        players = require('./storage/app/private/players.json').map(p => p.name);
+    }
 
-    const endpoint = `https://playactivate.com/scores/${player}/49/culver%20city/scores`;
+    for (const player of players) {
+        let driver = await new Builder().forBrowser(Browser.CHROME).build();
 
-    await driver.get(endpoint);
+        const endpoint = `https://playactivate.com/scores/${player}/49/culver%20city/scores`;
 
-    const elem = await driver.findElement(By.id('app'));
-    const attr = await elem.getAttribute('data-page');
+        await driver.get(endpoint);
 
-    const prettyAttr = JSON.stringify(JSON.parse(attr), null, 2);
+        const elem = await driver.findElement(By.id('app'));
+        const attr = await elem.getAttribute('data-page');
 
-    fs.writeFileSync(`storage/app/private/scores_${player}.json`, prettyAttr);
+        const prettyAttr = JSON.stringify(JSON.parse(attr), null, 2);
 
-    await driver.quit();
-  }
+        fs.writeFileSync(`storage/app/private/scores_${player}.json`, prettyAttr);
+
+        await driver.quit();
+    }
 
 })();

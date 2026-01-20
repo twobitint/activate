@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         Artisan::call('app:update-league-data');
 
         $skills = [
-            'frostea' => [
+            'Frosttea' => [
                 G::Grid->value => Skill::Great,
                 G::FlashMines->value => Skill::Neutral,
                 G::Strategy->value => Skill::Neutral,
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
                 G::Oddball->value => Skill::Unknown,
                 G::Stopwatch->value => Skill::Unknown,
             ],
-            'whumps' => [
+            'Whumps' => [
                 G::Grid->value => Skill::Great,
                 G::FlashMines->value => Skill::Poor,
                 G::Strategy->value => Skill::Low,
@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
                 G::Oddball->value => Skill::Good,
                 G::Stopwatch->value => Skill::Good,
             ],
-            'rainbow_spice' => [
+            'Rainbow_Spice' => [
                 G::Grid->value => Skill::Good,
                 G::FlashMines->value => Skill::Neutral,
                 G::Strategy->value => Skill::Neutral,
@@ -167,7 +167,7 @@ class DatabaseSeeder extends Seeder
                 G::Oddball->value => Skill::Unknown,
                 G::Stopwatch->value => Skill::Neutral,
             ],
-            'jtep' => [
+            'Jtep' => [
                 G::Grid->value => Skill::Good,
                 G::FlashMines->value => Skill::Unknown,
                 G::Strategy->value => Skill::Great,
@@ -212,7 +212,7 @@ class DatabaseSeeder extends Seeder
                 G::Oddball->value => Skill::Unknown,
                 G::Stopwatch->value => Skill::Unknown,
             ],
-            'twongx' => [
+            'Twongx' => [
                 G::Grid->value => Skill::Neutral,
                 G::FlashMines->value => Skill::Unknown,
                 G::Strategy->value => Skill::Neutral,

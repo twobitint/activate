@@ -30,47 +30,19 @@ class UpdatePlayerData extends Command
      */
     public function handle()
     {
-        $players = [
-            'whumps',
-            'rainbow_spice',
-            'frostea',
-            'jtep',
-            'twongx',
-        ];
+        $players = Storage::json('players.json');
 
-        foreach ($players as $player) {
-            $data = Storage::json('scores_' . $player . '.json')['props'];
+        foreach ($players as $playerInfo) {
+
+            $data = Storage::json('scores_' . $playerInfo['name'] . '.json')['props'];
 
             $playerData = $data['player'];
-
-            // // $games = [];
-            // $locationRoomIds = [];
-            // $locationGameIds = [];
-
-            // foreach ($playerData['location']['rooms'] as $room) {
-            //     $locationRoomIds[$room['name']] = $room['id'];
-            // }
-
-            // $games = Game::pluck('id', 'name');
-
-            // foreach ($data['games'] as $room) {
-            //     $count = 0;
-            //     foreach ($room['games'] as $gameInfo) {
-            //         $locationRoomId = $locationRoomIds[$room['name']] ?? false;
-
-            //         if ($locationRoomId) {
-            //             $game = $games[$gameInfo['attributes']['name']] ?? false;
-            //             $locationGameIds[($locationRoomId * 100) + $count] = $game;
-            //         }
-            //         $count++;
-            //     }
-            // }
-
-            // dd($locationGameIds);
 
             $player = Player::updateOrCreate([
                 'name' => $playerData['player']['playerName'],
             ], [
+                'email' => $playerInfo['email'] ?? null,
+                'sub' => $playerInfo['sub'] ?? false,
                 'player_rank' => $playerData['player']['rank'] ?? null,
                 'stars' => $playerData['player']['stars'] ?? null,
                 'coins' => $playerData['player']['coins'] ?? null,

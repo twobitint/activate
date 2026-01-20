@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('email')->nullable();
+
             $table->string('name');
+            $table->boolean('sub')->default(false);
             $table->integer('player_rank')->default(0);
             $table->integer('stars')->default(0);
             $table->integer('coins')->default(0);

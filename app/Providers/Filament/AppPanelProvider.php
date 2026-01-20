@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -37,6 +38,13 @@ class AppPanelProvider extends PanelProvider
             // ->pages([
             //     Dashboard::class,
             // ])
+            ->navigationItems([
+                NavigationItem::make('Sign in')
+                    ->hidden(fn (): bool => auth()->check())
+                    ->url('/login')
+                    ->icon('heroicon-o-user-circle')
+                    ->sort(999)
+            ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 // AccountWidget::class,
