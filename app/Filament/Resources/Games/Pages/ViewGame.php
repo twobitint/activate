@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Rooms\Pages;
+namespace App\Filament\Resources\Games\Pages;
 
 use App\Filament\Resources\Games\GameResource;
 use Filament\Resources\Pages\ViewRecord;

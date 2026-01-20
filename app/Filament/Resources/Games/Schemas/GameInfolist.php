@@ -13,6 +13,8 @@ class GameInfolist
             ->components([
                 TextEntry::make('name'),
                 TextEntry::make('room'),
+                TextEntry::make('description')
+                    ->columnSpanFull(),
                 TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-'),
