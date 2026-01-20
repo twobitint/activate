@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Rooms\Schemas;
+namespace App\Filament\Resources\Games\Schemas;
 
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
