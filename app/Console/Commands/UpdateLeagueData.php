@@ -47,6 +47,7 @@ class UpdateLeagueData extends Command
             Matchup::updateOrCreate([
                 'game_id' => Game::where('name', $game['gameName'])->first()->id,
                 'week' => $week,
+                'season' => '2026',
             ], [
                 'level' => $game['level'],
             ]);

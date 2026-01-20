@@ -16,13 +16,13 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('email')->nullable();
-
             $table->string('name');
-            $table->boolean('sub')->default(false);
+            $table->string('team_status')->default('Substitute');
+            $table->string('roster_status')->default('Inactive');
+
             $table->integer('player_rank')->default(0);
             $table->integer('stars')->default(0);
             $table->integer('coins')->default(0);
-
             $table->integer('rank')->default(0);
             $table->integer('standing')->default(0);
             $table->integer('total_score')->default(0);

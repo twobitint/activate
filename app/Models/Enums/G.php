@@ -132,6 +132,12 @@ enum G: int
         return match ($this) {
             self::Spellinator => 5,
             self::Trivial => 5,
+            self::LaserRelay => 3,
+            self::Sharpshooter => 5,
+            self::FlashMines => 5,
+            self::Seeker => 5,
+            self::MegaGrid => 5,
+            self::Numbers => 5,
             default => 4,
         };
     }

@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Players\Tables;
 
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -47,6 +49,19 @@ class PlayersTable
                 TextColumn::make('yearly_score')
                     ->label('2026 Score')
                     ->sortable(),
-            ]);
+                IconColumn::make('team_status')
+                    ->label('Member')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-user-group')
+                    ->falseIcon('heroicon-o-user')
+                    ->sortable(),
+            ])
+            ->defaultSort('standing');
+            //->defaultGroup('team_status');
+            // ->groups([
+            //     Group::make('sub')
+            //         ->titlePrefixedWithLabel(false)
+            //         ->getTitleFromRecordUsing(fn ($record): string => $record->sub ? 'Substitutes' : 'Members'),
+            // ]);
     }
 }

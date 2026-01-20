@@ -29,7 +29,7 @@ class Week extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(Matchup::query())
+            ->query(Matchup::query()->where('week', 1))
             ->columns([
 
                 TextColumn::make('game.room')
@@ -38,25 +38,27 @@ class Week extends Page implements HasTable
                     ->sortable(),
                 TextColumn::make('game.name')
                     ->label('Game')
+                    ->description(fn ($record) => 'Level '.$record->level)
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('level')
-                    ->sortable(),
-                TextColumn::make('playersThatLike')
-                    ->label('Players that like')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('skilledPlayers')
+                    ->label('Skilled players')
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state->name)
                     ->color(fn ($state) => $state->pivot->skill->getColor())
                     ->listWithLineBreaks(),
-                TextColumn::make('playersThatDontLike')
-                    ->label('Players that don\'t like')
+                TextColumn::make('unskilledPlayers')
+                    ->label('Iffy players')
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state->name)
                     ->color(fn ($state) => $state->pivot->skill->getColor())
                     ->listWithLineBreaks(),
-                TextColumn::make('game.optimal_players')
-                    ->label('Optimal Players')
-                    ->sortable(),
+                // TextColumn::make('game.optimal_players')
+                //     ->label('Optimal Players')
+                //     ->sortable(),
                 TextColumn::make('participants')
                     ->badge()
                     ->formatStateUsing(fn ($state) => $state->name)

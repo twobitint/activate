@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Enums\G;
+use App\Models\Enums\PlayerStatus;
+use App\Models\Enums\RosterStatus;
+use App\Models\Enums\TeamStatus;
 use App\Models\Player;
 use Dom\HTMLDocument;
 use Illuminate\Console\Command;
@@ -42,7 +45,8 @@ class UpdatePlayerData extends Command
                 'name' => $playerData['player']['playerName'],
             ], [
                 'email' => $playerInfo['email'] ?? null,
-                'sub' => $playerInfo['sub'] ?? false,
+                'team_status' => TeamStatus::from($playerInfo['team'] ?? 'Substitute'),
+                'roster_status' => RosterStatus::from($playerInfo['roster'] ?? 'Inactive'),
                 'rank' => $playerData['player']['rank'] ?? null,
                 'stars' => $playerData['player']['stars'] ?? null,
                 'coins' => $playerData['player']['coins'] ?? null,

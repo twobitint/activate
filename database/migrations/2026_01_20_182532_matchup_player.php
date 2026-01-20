@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matchups', function (Blueprint $table) {
+        Schema::create('matchup_player', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('game_id')
-                ->constrained('games')
-                ->onDelete('cascade');
+            $table->foreignId('player_id')
+                ->constrained('players')
+                ->cascadeOnDelete();
 
-            $table->string('season');
-            $table->integer('week');
-            $table->integer('level');
+            $table->foreignId('matchup_id')
+                ->constrained('matchups')
+                ->cascadeOnDelete();
+
+            $table->string('status')->default('Inactive');
         });
     }
 

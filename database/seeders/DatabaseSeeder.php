@@ -5,8 +5,9 @@ namespace Database\Seeders;
 use App\Models\Enums\Skill;
 use App\Models\Game;
 use App\Models\Enums\G;
+use App\Models\Matchup;
+use App\Models\MatchupPlayer;
 use App\Models\Player;
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -264,6 +265,17 @@ class DatabaseSeeder extends Seeder
             foreach ($gameSkills as $gameId => $skill) {
                 $player->games()
                     ->updateExistingPivot($gameId, ['skill' => $skill->value]);
+            }
+        }
+
+        // Just for week 1
+        foreach(Matchup::all() as $matchup) {
+            foreach (Player::all() as $player) {
+                MatchupPlayer::insert([
+                    'player_id' => $player->id,
+                    'matchup_id' => $matchup->id,
+                    'status' => $player->roster_status,
+                ]);
             }
         }
     }
