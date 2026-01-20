@@ -22,7 +22,7 @@ return new class extends Migration
                 ->constrained('games')
                 ->onDelete('cascade');
 
-            $table->integer('skill')->default(0);
+            $table->integer('skill')->default(0)->nullable();
 
             $table->integer('level_1_score')->default(0);
             $table->integer('level_2_score')->default(0);

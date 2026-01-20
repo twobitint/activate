@@ -20,10 +20,10 @@ enum Skill: int implements HasLabel, HasDescription, HasColor
     {
         return match ($this) {
             self::Unknown => 'Unknown',
-            self::Poor => 'Declined',
-            self::Low => 'Disliked',
+            self::Poor => 'Poor',
+            self::Low => 'Low',
             self::Neutral => 'Neutral',
-            self::Good => 'Enjoys',
+            self::Good => 'Good',
             self::Great => 'Great',
         };
     }
@@ -49,6 +49,18 @@ enum Skill: int implements HasLabel, HasDescription, HasColor
             self::Neutral => 'warning',
             self::Good => 'info',
             self::Great => 'success',
+        };
+    }
+
+    public function getSelectOptionHtml(): string
+    {
+        return match ($this) {
+            self::Unknown => "<span style=\"color: gray;\">Unknown</span>",
+            self::Poor => "<span style=\"color: oklch(0.404 0.245 29.997);\">Poor</span>",
+            self::Low => "<span style=\"color: oklch(0.665 0.245 74.997);\">Low</span>",
+            self::Neutral => "<span style=\"color: oklch(0.828 0.189 84.429);\">Neutral</span>",
+            self::Good => "<span style=\"color: oklch(0.882 0.059 254.128);\">Good</span>",
+            self::Great => "<span style=\"color: oklch(0.871 0.15 154.449);\">Great</span>",
         };
     }
 }

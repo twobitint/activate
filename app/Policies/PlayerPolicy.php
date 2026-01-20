@@ -35,7 +35,7 @@ class PlayerPolicy
      */
     public function update(Player $user, Player $player): bool
     {
-        return false;
+        return $user->id == $player->id;
     }
 
     /**

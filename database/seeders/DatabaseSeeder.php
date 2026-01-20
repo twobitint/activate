@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
             $player = Player::where('name', $playerName)->first();
             foreach ($gameSkills as $gameId => $skill) {
                 $player->games()
-                    ->updateExistingPivot($gameId, ['skill' => $skill->value]);
+                    ->updateExistingPivot($gameId, ['skill' => $skill?->value]);
             }
         }
 

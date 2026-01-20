@@ -16,7 +16,8 @@ class Player extends Authenticatable implements FilamentUser
     public function games()
     {
         return $this->belongsToMany(Game::class)
-            ->using(GamePlayer::class);
+            ->using(GamePlayer::class)
+            ->withPivot('skill');
     }
 
     public function matchups()

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Enums\Skill;
 use BackedEnum;
 use App\Models\Matchup;
 use Filament\Pages\Page;
@@ -55,27 +56,11 @@ class Week extends Page implements HasTable
                                 ->sortable(),
                         ]),
                     ])->from('md'),
-                    // TextColumn::make('skilledPlayers')
-                    //     ->description('Players rated Good or Excellent')
-                    //     ->label('Skilled players')
-                    //     ->badge()
-                    //     ->formatStateUsing(fn ($state) => $state->name)
-                    //     ->color(fn ($state) => $state->pivot->skill->getColor())
-                    //     ->listWithLineBreaks()
-                    //     ->visibleFrom('md'),
-                    // TextColumn::make('unskilledPlayers')
-                    //     ->label('Iffy players')
-                    //     ->badge()
-                    //     ->formatStateUsing(fn ($state) => $state->name)
-                    //     ->color(fn ($state) => $state->pivot->skill->getColor())
-                    //     ->listWithLineBreaks()
-                    //     ->visibleFrom('md'),
                     TextColumn::make('participants')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
-                        ->color(fn ($state) => $state->pivot->skill->getColor())
+                        ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->wrap(),
-                        // ->listWithLineBreaks(),
                 ]),
             ])
             ->paginated(false);

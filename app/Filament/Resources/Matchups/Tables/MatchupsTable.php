@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Matchups\Tables;
 
+use App\Models\Enums\Skill;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -36,18 +37,18 @@ class MatchupsTable
                         ->label('Skilled players')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
-                        ->color(fn ($state) => $state->pivot->skill->getColor())
+                        ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->listWithLineBreaks(),
                     TextColumn::make('unskilledPlayers')
                         ->label('Iffy players')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
-                        ->color(fn ($state) => $state->pivot->skill->getColor())
+                        ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->listWithLineBreaks(),
                     TextColumn::make('participants')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
-                        ->color(fn ($state) => $state->pivot->skill->getColor())
+                        ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->listWithLineBreaks(),
                     TextColumn::make('opponentStanding.record')
                         ->label('Opponent')
