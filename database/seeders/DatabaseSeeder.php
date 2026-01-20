@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'optimal_players' => $game->optimalPlayers(),
         ], G::cases()));
 
-        Artisan::call('app:update-game-info');
+        Artisan::call('app:update-game-data');
         Artisan::call('app:update-player-data');
         Artisan::call('app:update-league-data');
 

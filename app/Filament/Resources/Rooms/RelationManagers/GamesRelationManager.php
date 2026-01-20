@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Players\RelationManagers;
+namespace App\Filament\Resources\Rooms\RelationManagers;
 
+use App\Filament\Resources\Games\GameResource;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -17,14 +18,13 @@ class GamesRelationManager extends RelationManager
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('best_level')
-                    ->label('Highest Level Completed')
-                    ->formatStateUsing(fn ($state) => $state ? $state : null)
-                    ->sortable(),
-                TextColumn::make('skill')
-                    ->badge()
-                    ->sortable(),
-            ]);
+                TextColumn::make('level_3_top_score')
+                    ->label('Level 3 top score'),
+                TextColumn::make('level_4_top_score')
+                    ->label('Level 4 top score'),
+
+            ])
+            ->recordUrl(fn ($record) => GameResource::getUrl('view', ['record' => $record]));
     }
 
 

@@ -7,9 +7,17 @@ use Laravel\Socialite\Facades\Socialite;
 
 // ...
 
-// Route::get('scores', fn () =>
-//     json_decode(Storage::get('scores_rainbow_spice.json'))
-// );
+Route::get('scores', fn () =>
+    json_decode(Storage::get('scores/Twongx.json'))
+);
+
+Route::get('grid', fn () =>
+    json_decode(Storage::get('games/mega grid.json'))
+);
+
+Route::get('league', fn () =>
+    json_decode(Storage::get('league.json'))
+);
 
 // Route::get('league', fn () =>
 //     json_decode(Storage::get('league.json'))

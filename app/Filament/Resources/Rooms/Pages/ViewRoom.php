@@ -8,4 +8,9 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewRoom extends ViewRecord
 {
     protected static string $resource = RoomResource::class;
+
+    public function getTitle(): string
+    {
+        return $this->record->name;
+    }
 }

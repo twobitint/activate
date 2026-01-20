@@ -24,6 +24,17 @@ return new class extends Migration
             $table->integer('min_players')->default(2);
             $table->integer('max_players')->default(5);
             $table->integer('optimal_players')->default(3);
+
+            $table->integer('level_1_top_score')->default(0);
+            $table->integer('level_2_top_score')->default(0);
+            $table->integer('level_3_top_score')->default(0);
+            $table->integer('level_4_top_score')->default(0);
+            $table->integer('level_5_top_score')->default(0);
+            $table->integer('level_6_top_score')->default(0);
+            $table->integer('level_7_top_score')->default(0);
+            $table->integer('level_8_top_score')->default(0);
+            $table->integer('level_9_top_score')->default(0);
+            $table->integer('level_10_top_score')->default(0);
         });
     }
 

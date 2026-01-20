@@ -28,7 +28,7 @@ class UpdateGameInfo extends Command
      */
     public function handle()
     {
-        $rooms = Storage::json('scores_Whumps.json')['props']['games'] ?? [];
+        $rooms = Storage::json('scores/Whumps.json')['props']['games'] ?? [];
 
         foreach ($rooms as $roomData) {
             Room::updateOrCreate([

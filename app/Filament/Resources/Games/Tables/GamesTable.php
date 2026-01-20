@@ -24,13 +24,13 @@ class GamesTable
                     ->searchable(),
                 TextColumn::make('room')
                     ->searchable(),
-                TextColumn::make('cooperative')
-                    ->formatStateUsing(fn (bool $state): string => $state ? 'Yes' : 'No')
-                    ->sortable(),
+                // TextColumn::make('cooperative')
+                //     ->formatStateUsing(fn (bool $state): string => $state ? 'Yes' : 'No')
+                //     ->sortable(),
                 TextColumn::make('description')
                     ->wrap()
                     ->searchable(),
-                ImageColumn::make('image'),
+                // ImageColumn::make('image'),
             ]);
     }
 }

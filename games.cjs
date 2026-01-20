@@ -3,18 +3,24 @@ const fs = require('fs');
 
 (async function scrape() {
 
-    let players = [];
+    const games = [
+        'hoops',
+        'grid',
+        'hide',
+        'mega grid',
+        'mega laser',
+        'control',
+        'strike',
+        'portals',
+        'press',
+        'scan',
+    ];
 
-    if (process.argv.length > 2) {
-        players = process.argv.slice(2);
-    } else {
-        players = require('./storage/app/private/players.json').map(p => p.name);
-    }
+    for (const game of games) {
 
-    for (const player of players) {
         let driver = await new Builder().forBrowser(Browser.CHROME).build();
 
-        const endpoint = `https://playactivate.com/scores/${player}/49/culver%20city/scores`;
+        const endpoint = `https://playactivate.com/scores/whumps/49/culver%20city/${game}/scores`;
 
         await driver.get(endpoint);
 
@@ -23,9 +29,9 @@ const fs = require('fs');
 
         const prettyAttr = JSON.stringify(JSON.parse(attr), null, 2);
 
-        fs.writeFileSync(`storage/app/private/scores/${player}.json`, prettyAttr);
+        fs.writeFileSync(`storage/app/private/games/${game}.json`, prettyAttr);
 
         await driver.quit();
     }
-
 })();
+

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Game;
+use App\Models\Enums\G;
 use App\Models\Player;
 use Dom\HTMLDocument;
 use Illuminate\Console\Command;
@@ -34,7 +34,7 @@ class UpdatePlayerData extends Command
 
         foreach ($players as $playerInfo) {
 
-            $data = Storage::json('scores_' . $playerInfo['name'] . '.json')['props'];
+            $data = Storage::json('scores/' . $playerInfo['name'] . '.json')['props'];
 
             $playerData = $data['player'];
 
@@ -43,10 +43,10 @@ class UpdatePlayerData extends Command
             ], [
                 'email' => $playerInfo['email'] ?? null,
                 'sub' => $playerInfo['sub'] ?? false,
-                'player_rank' => $playerData['player']['rank'] ?? null,
+                'rank' => $playerData['player']['rank'] ?? null,
                 'stars' => $playerData['player']['stars'] ?? null,
                 'coins' => $playerData['player']['coins'] ?? null,
-                'rank' => $playerData['playerLocation']['playerRank'] ?? null,
+                'player_rank' => $playerData['playerLocation']['playerRank'] ?? null,
                 'yearly_rank' => $playerData['playerLocation']['yearlyRank'] ?? null,
                 'standing' => $playerData['playerLocation']['standing'] ?? null,
                 'total_score' => $playerData['playerLocation']['totalScore'] ?? null,
@@ -56,14 +56,16 @@ class UpdatePlayerData extends Command
             $gameScores = [];
 
             foreach ($playerData['playerLocation']['scores'] as $score) {
-
                 $level = $score['levelId'] + 1;
-
                 $gameScores[$score['gameId']][$level] = $score['highScore'];
             }
 
-            foreach ($gameScores as $gameId => $scores) {
-                $scores[0] = 0; // Ensure level 0 is set to 0
+            foreach (G::cases() as $gameEnum) {
+                $gameId = $gameEnum->value;
+                if (!array_key_exists($gameId, $gameScores)) {
+                    $gameScores[$gameId][0] = 0;
+                }
+                $scores = $gameScores[$gameId];
                 $gamePlayerUpdates[$gameId] = [
                     'level_1_score' => $scores[1] ?? 0,
                     'level_2_score' => $scores[2] ?? 0,

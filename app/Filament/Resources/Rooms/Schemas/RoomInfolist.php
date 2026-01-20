@@ -12,32 +12,31 @@ class RoomInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('name'),
-                TextEntry::make('description')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('hero_title')
-                    ->placeholder('-'),
-                ImageEntry::make('display_image')
-                    ->placeholder('-'),
-                TextEntry::make('illustration')
-                    ->placeholder('-'),
-                TextEntry::make('icon')
-                    ->placeholder('-'),
-                TextEntry::make('background')
-                    ->placeholder('-'),
-                TextEntry::make('background_poster')
-                    ->placeholder('-'),
-                TextEntry::make('preview')
-                    ->placeholder('-'),
-                TextEntry::make('youtube_id')
-                    ->placeholder('-'),
+                // TextEntry::make('created_at')
+                //     ->dateTime()
+                //     ->placeholder('-'),
+                // TextEntry::make('updated_at')
+                //     ->dateTime()
+                //     ->placeholder('-'),
+                // TextEntry::make('description')
+                //     ->placeholder('-')
+                //     ->columnSpanFull(),
+                // TextEntry::make('hero_title')
+                //     ->placeholder('-'),
+                // ImageEntry::make('display_image')
+                //     ->placeholder('-'),
+                // TextEntry::make('illustration')
+                //     ->placeholder('-'),
+                // TextEntry::make('icon')
+                //     ->placeholder('-'),
+                // TextEntry::make('background')
+                //     ->placeholder('-'),
+                // TextEntry::make('background_poster')
+                //     ->placeholder('-'),
+                // TextEntry::make('preview')
+                //     ->placeholder('-'),
+                // TextEntry::make('youtube_id')
+                //     ->placeholder('-'),
             ]);
     }
 }

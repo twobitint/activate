@@ -19,6 +19,7 @@ class PlayersRelationManager extends RelationManager
                     ->sortable(),
                 TextColumn::make('best_level')
                     ->label('Highest Level Completed')
+                    ->formatStateUsing(fn ($state) => $state ? $state : null)
                     ->sortable(),
                 TextColumn::make('skill')
                     ->badge()
@@ -29,12 +30,14 @@ class PlayersRelationManager extends RelationManager
                 // TextColumn::make('level_2_score')
                 //     ->label('Level 2')
                 //     ->sortable(),
-                // TextColumn::make('level_3_score')
-                //     ->label('Level 3')
-                //     ->sortable(),
-                // TextColumn::make('level_4_score')
-                //     ->label('Level 4')
-                //     ->sortable(),
+                TextColumn::make('level_3_score')
+                    ->label('Level 3')
+                    ->formatStateUsing(fn ($state) => $state ? $state : null)
+                    ->sortable(),
+                TextColumn::make('level_4_score')
+                    ->label('Level 4')
+                    ->formatStateUsing(fn ($state) => $state ? $state : null)
+                    ->sortable(),
                 // TextColumn::make('level_5_score')
                 //     ->label('Level 5')
                 //     ->sortable(),

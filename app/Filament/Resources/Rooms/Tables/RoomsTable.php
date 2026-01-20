@@ -17,34 +17,10 @@ class RoomsTable
         return $table
             ->modifyQueryUsing(fn ($query) => $query->whereNotIn('name', ['Arena', 'Climb', 'Pipes', 'Trench', 'Push']))
             ->columns([
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                // TextColumn::make('name')
-                //     ->searchable(),
                 ImageColumn::make('hero_title')
                     ->label('Name'),
                 TextColumn::make('description')
-                    ->wrap()
-                    ->searchable(),
-                // ImageColumn::make('display_image'),
-                // ImageColumn::make('illustration')
-                //     ->searchable(),
-                // ImageColumn::make('icon')
-                //     ->searchable(),
-                // ImageColumn::make('background')
-                //     ->searchable(),
-                // ImageColumn::make('background_poster')
-                //     ->searchable(),
-                // ImageColumn::make('preview')
-                //     ->searchable(),
-                // TextColumn::make('youtube_id')
-                //     ->url(fn (TextColumn $column): ?string => $column->getState() ? 'https://youtu.be/' . $column->getState() : null)
+                    ->wrap(),
             ])
             ->paginated(false);
     }
