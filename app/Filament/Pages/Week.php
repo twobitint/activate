@@ -2,9 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use BackedEnum;
 use App\Models\Matchup;
 use Filament\Pages\Page;
 use Filament\Support\Enums\TextSize;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
@@ -19,6 +21,8 @@ class Week extends Page implements HasTable
     protected string $view = 'filament.pages.week';
 
     protected static ?string $slug = '/';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedStar;
 
     // nav label
     protected static ?string $navigationLabel = 'This Week\'s Games';

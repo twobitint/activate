@@ -19,9 +19,11 @@ class GameResource extends Resource
 {
     protected static ?string $model = Game::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPuzzlePiece;
 
     protected static UnitEnum|string|null $navigationGroup = 'Research';
+
+    protected static ?int $navigationSort = 2;
 
     public static function table(Table $table): Table
     {
