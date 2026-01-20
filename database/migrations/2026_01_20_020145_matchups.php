@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('season');
             $table->integer('week');
             $table->integer('level');
+
+            $table->string('opponent_location')->nullable();
+            $table->string('opponent')->nullable();
+            $table->boolean('is_global')->default(false);
         });
     }
 

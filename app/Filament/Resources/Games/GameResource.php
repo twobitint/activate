@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Games;
 
+use UnitEnum;
 use App\Filament\Resources\Games\Pages\ListGames;
 use App\Filament\Resources\Games\RelationManagers\PlayersRelationManager;
 use App\Filament\Resources\Games\Tables\GamesTable;
@@ -19,6 +20,8 @@ class GameResource extends Resource
     protected static ?string $model = Game::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static UnitEnum|string|null $navigationGroup = 'Research';
 
     public static function table(Table $table): Table
     {

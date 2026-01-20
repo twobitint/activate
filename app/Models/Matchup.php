@@ -62,4 +62,9 @@ class Matchup extends Model
                 ->get()
         );
     }
+
+    public function opponentStanding()
+    {
+        return $this->belongsTo(Standing::class, 'opponent', 'team');
+    }
 }

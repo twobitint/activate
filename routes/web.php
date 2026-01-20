@@ -19,9 +19,9 @@ Route::get('league', fn () =>
     json_decode(Storage::get('league.json'))
 );
 
-// Route::get('league', fn () =>
-//     json_decode(Storage::get('league.json'))
-// );
+Route::get('leaderboard', fn () =>
+    json_decode(Storage::get('leaderboard.json'))
+);
 
 // Route::get('hoops', fn () =>
 //     json_decode(Storage::get('hoops.json'))

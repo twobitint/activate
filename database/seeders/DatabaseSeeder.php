@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         Artisan::call('app:update-game-data');
         Artisan::call('app:update-player-data');
         Artisan::call('app:update-league-data');
+        Artisan::call('app:update-leaderboard-data');
 
         $skills = [
             'Frosttea' => [

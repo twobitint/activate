@@ -35,7 +35,9 @@ class UpdateLeagueData extends Command
 
         $week = 1;
 
-        foreach ($leageueData['props']['teamSchedule']['matches'] as $matchData) {
+        $teamSchedule = $leageueData['props']['teamSchedule'];
+
+        foreach ($teamSchedule['matches'] as $matchData) {
             $games = $matchData['games'];
 
             if (empty($games)) {
@@ -47,9 +49,12 @@ class UpdateLeagueData extends Command
             Matchup::updateOrCreate([
                 'game_id' => Game::where('name', $game['gameName'])->first()->id,
                 'week' => $week,
-                'season' => '2026',
+                'season' => $teamSchedule['season']['name'],
             ], [
                 'level' => $game['level'],
+                'opponent_location' => $matchData['opponentHomeLocationName'] ?? null,
+                'opponent' => $matchData['opponentName'] ?? null,
+                'is_global' => $matchData['opponentName'] == 'The World',
             ]);
         }
     }
