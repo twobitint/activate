@@ -2,14 +2,11 @@
 
 namespace App\Filament\Resources\Games;
 
-use App\Filament\Resources\Games\Pages\CreateGame;
-use App\Filament\Resources\Games\Pages\EditGame;
 use App\Filament\Resources\Games\Pages\ListGames;
 use App\Filament\Resources\Games\RelationManagers\PlayersRelationManager;
-use App\Filament\Resources\Games\Schemas\GameForm;
 use App\Filament\Resources\Games\Tables\GamesTable;
-use App\Filament\Resources\Rooms\Pages\ViewGame;
-use App\Filament\Resources\Rooms\Schemas\GameInfolist;
+use App\Filament\Resources\Games\Pages\ViewGame;
+use App\Filament\Resources\Games\Schemas\GameInfolist;
 use App\Models\Game;
 use BackedEnum;
 use Filament\Resources\Resource;
