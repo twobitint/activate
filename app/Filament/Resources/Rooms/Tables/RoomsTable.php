@@ -15,6 +15,7 @@ class RoomsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->whereNotIn('name', ['Arena', 'Climb', 'Pipes', 'Trench', 'Push']))
             ->columns([
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -43,7 +44,7 @@ class RoomsTable
                 // ImageColumn::make('preview')
                 //     ->searchable(),
                 // TextColumn::make('youtube_id')
-                //     ->searchable(),
+                //     ->url(fn (TextColumn $column): ?string => $column->getState() ? 'https://youtu.be/' . $column->getState() : null)
             ])
             ->paginated(false);
     }

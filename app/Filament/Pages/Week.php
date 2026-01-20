@@ -31,12 +31,13 @@ class Week extends Page implements HasTable
         return $table
             ->query(Matchup::query())
             ->columns([
-                TextColumn::make('game.name')
-                    ->label('Game')
-                    ->searchable()
-                    ->sortable(),
+
                 TextColumn::make('game.room')
                     ->label('Room')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('game.name')
+                    ->label('Game')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('level')
@@ -61,6 +62,7 @@ class Week extends Page implements HasTable
                     ->formatStateUsing(fn ($state) => $state->name)
                     ->color(fn ($state) => $state->pivot->skill->getColor())
                     ->listWithLineBreaks(),
-            ]);
+            ])
+            ->paginated(false);
     }
 }
