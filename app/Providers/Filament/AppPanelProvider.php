@@ -38,13 +38,13 @@ class AppPanelProvider extends PanelProvider
             // ->pages([
             //     Dashboard::class,
             // ])
-            ->navigationItems([
-                NavigationItem::make('Sign in')
-                    ->hidden(fn (): bool => auth()->check())
-                    ->url('/login')
-                    ->icon('heroicon-o-user-circle')
-                    ->sort(999)
-            ])
+            // ->navigationItems([
+            //     NavigationItem::make('Sign in')
+            //         ->hidden(fn (): bool => auth()->check())
+            //         ->url('/login')
+            //         ->icon('heroicon-o-user-circle')
+            //         ->sort(999)
+            // ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 // AccountWidget::class,
