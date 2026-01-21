@@ -50,7 +50,7 @@ class MatchupsTable
                         ->formatStateUsing(fn ($state) => $state->name)
                         ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->listWithLineBreaks(),
-                    TextColumn::make('opponentStanding.record')
+                    TextColumn::make('opponentStanding.wins')
                         ->label('Opponent')
                         ->getStateUsing(fn ($record) =>
                             $record->is_global ? '🌐 The World' : $record->opponentStanding->record
@@ -60,12 +60,6 @@ class MatchupsTable
                                 "{$record->opponent} <br><span style='font-size: 0.8em; color: gray;'>{$record->opponent_location}</span>"
                             )
                         )
-                        // ->listWithLineBreaks()
-                        // ->getStateUsing(fn ($record) => [
-                        //     $record->is_global ? '🌐 The World' : $record->opponent,
-                        //     $record->opponent_location,
-                        // ])
-                        // ->description(fn ($record) => $record->opponentStanding->record ?? '')
                         ->sortable(),
             ])->filters([
                 SelectFilter::make('week')
