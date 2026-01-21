@@ -55,7 +55,7 @@ class Matchup extends Model
     {
         return Attribute::get(fn () =>
             $this->game->players()
-                ->withPivot('skill')
+                ->withPivot('skill', 'best_level', 'level_3_score', 'level_4_score')
                 ->orderBy('game_player.skill', 'desc')
                 ->limit($this->game->optimal_players)
                 ->whereIn('player_id', $this->activePlayers->pluck('id'))
