@@ -20,11 +20,11 @@ enum Skill: int implements HasLabel, HasDescription, HasColor
     {
         return match ($this) {
             self::Unknown => 'Unknown',
-            self::Poor => 'Poor',
-            self::Low => 'Low',
+            self::Poor => 'Avoids',
+            self::Low => 'Dislikes',
             self::Neutral => 'Neutral',
-            self::Good => 'Good',
-            self::Great => 'Great',
+            self::Good => 'Likes',
+            self::Great => 'Loves',
         };
     }
 

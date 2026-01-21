@@ -16,6 +16,7 @@ class GamesRelationManager extends RelationManager
     {
         if (auth()->check() && auth()->user()->can('update', $this->ownerRecord)) {
             $skillColumn = SelectColumn::make('skill')
+                ->label('Preference')
                 ->options([
                     Skill::Great->value => Skill::Great->getSelectOptionHtml(),
                     Skill::Good->value => Skill::Good->getSelectOptionHtml(),
@@ -29,7 +30,7 @@ class GamesRelationManager extends RelationManager
                 ->sortable();
         } else {
             $skillColumn = TextColumn::make('skill')
-                ->label('Skill')
+                ->label('Preference')
                 ->badge()
                 ->getStateUsing(fn ($record) => $record->pivot->skill)
                 ->sortable();

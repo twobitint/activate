@@ -22,6 +22,7 @@ class PlayersRelationManager extends RelationManager
                     ->formatStateUsing(fn ($state) => $state ? $state : null)
                     ->sortable(),
                 TextColumn::make('skill')
+                    ->label('Preference')
                     ->badge()
                     ->sortable(),
                 // TextColumn::make('level_1_score')

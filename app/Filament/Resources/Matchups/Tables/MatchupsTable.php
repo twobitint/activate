@@ -34,13 +34,13 @@ class MatchupsTable
                         ->color('gray')
                         ->sortable(),
                     TextColumn::make('skilledPlayers')
-                        ->label('Skilled players')
+                        ->label('Preferred')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
                         ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->listWithLineBreaks(),
                     TextColumn::make('unskilledPlayers')
-                        ->label('Iffy players')
+                        ->label('Iffy')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
                         ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
