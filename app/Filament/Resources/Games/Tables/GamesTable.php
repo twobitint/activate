@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Games\Tables;
 
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -24,13 +24,14 @@ class GamesTable
                     ->searchable(),
                 TextColumn::make('room')
                     ->searchable(),
-                // TextColumn::make('cooperative')
-                //     ->formatStateUsing(fn (bool $state): string => $state ? 'Yes' : 'No')
-                //     ->sortable(),
                 TextColumn::make('description')
                     ->wrap()
                     ->searchable(),
-                // ImageColumn::make('image'),
+                TextColumn::make('optimal_players')
+                    ->numeric(),
+            ])
+            ->actions([
+                EditAction::make(),
             ]);
     }
 }

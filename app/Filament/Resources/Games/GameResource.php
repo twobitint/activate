@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Games;
 
+use App\Filament\Resources\Games\Schemas\GameForm;
 use UnitEnum;
 use App\Filament\Resources\Games\Pages\ListGames;
 use App\Filament\Resources\Games\RelationManagers\PlayersRelationManager;
@@ -28,6 +29,11 @@ class GameResource extends Resource
     public static function table(Table $table): Table
     {
         return GamesTable::configure($table);
+    }
+
+    public static function form(Schema $schema): Schema
+    {
+        return GameForm::configure($schema);
     }
 
     public static function infolist(Schema $schema): Schema

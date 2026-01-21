@@ -15,13 +15,12 @@ class GameInfolist
             ->components([
                 TextEntry::make('room')
                     ->url(fn ($record) => RoomResource::getUrl('view', ['record' => Room::where('name', 'like', $record->room)->first()])),
+                TextEntry::make('optimal_players')
+                    ->numeric(),
                 TextEntry::make('description')
                     ->columnSpanFull(),
                 TextEntry::make('level_3_top_score'),
                 TextEntry::make('level_4_top_score'),
-                // TextEntry::make('updated_at')
-                //     ->dateTime()
-                //     ->placeholder('-'),
             ]);
     }
 }

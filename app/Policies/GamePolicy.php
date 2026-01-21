@@ -36,7 +36,7 @@ class GamePolicy
      */
     public function update(Player $user, Game $game): bool
     {
-        return false;
+        return $user->name == 'Whumps';
     }
 
     /**
