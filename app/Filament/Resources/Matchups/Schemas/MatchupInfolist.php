@@ -26,6 +26,8 @@ class MatchupInfolist
                     ]),
                 Fieldset::make('Game details')
                     ->schema([
+                        TextEntry::make('game.description')
+                            ->columnSpanFull(),
                         TextEntry::make("game.level_{$record->level}_top_score")
                             ->label("Culver top score"),
                     ]),
@@ -35,7 +37,7 @@ class MatchupInfolist
                     ->table([
                         TableColumn::make('Player'),
                         TableColumn::make('Level Score'),
-                        TableColumn::make('Skill Level'),
+                        TableColumn::make('Preference'),
                         TableColumn::make('Highest Level Completed'),
                     ])
                     ->schema([
