@@ -35,5 +35,10 @@ class AppServiceProvider extends ServiceProvider
             PanelsRenderHook::TOPBAR_END,
             fn (): View => view('filament.signin'),
         );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::HEAD_START,
+            fn (): View => view('filament.favicons'),
+        );
     }
 }
