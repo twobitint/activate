@@ -55,14 +55,18 @@ Route::get('/login', function ()
 
 Route::get('/auth/callback', function ()
 {
-    $googleUser = Socialite::driver('google')->user();
+    try {
+        $googleUser = Socialite::driver('google')->user();
 
-    $email = $googleUser->getEmail();
+        $email = $googleUser->getEmail();
 
-    $player = Player::where('email', $email)->first();
+        $player = Player::where('email', $email)->first();
 
-    if ($player) {
-        Auth::login($player);
+        if ($player) {
+            Auth::login($player);
+        }
+    } catch (Exception $e) {
+        // Ignore login errors
     }
 
     return redirect('/');
