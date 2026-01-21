@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Matchups\Tables;
 
 use App\Models\Enums\Skill;
+use App\Models\Matchup;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -63,10 +64,15 @@ class MatchupsTable
                         ->sortable(),
             ])->filters([
                 SelectFilter::make('week')
-                    ->options([
-                        1 => 'Week 1',
-                    ])
-                    ->default(1),
+                    ->options(fn () =>
+                        Matchup::query()
+                            ->distinct()
+                            ->orderBy('week', 'asc')
+                            ->pluck('week', 'week')
+                            ->map(fn ($week) => "Week $week")
+                            ->toArray()
+                    )
+                    ->default(config('activate.current_week')),
             ]);
     }
 }

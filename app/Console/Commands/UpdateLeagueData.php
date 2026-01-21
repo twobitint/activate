@@ -33,28 +33,30 @@ class UpdateLeagueData extends Command
     {
         $leageueData = Storage::json('league.json');
 
-        $week = 1;
-
         $teamSchedule = $leageueData['props']['teamSchedule'];
 
         foreach ($teamSchedule['matches'] as $matchData) {
             $games = $matchData['games'];
 
-            if (empty($games)) {
-                continue;
-            }
+            $game = $games[0] ?? [];
 
-            $game = $games[0];
+            $gameId = $game ? Game::where('name', $game['gameName'])->first()->id : null;
 
             Matchup::updateOrCreate([
-                'game_id' => Game::where('name', $game['gameName'])->first()->id,
-                'week' => $week,
+                'opponent' => $matchData['opponentName'] ?? null,
+                'week' => $matchData['blockIndex'],
                 'season' => $teamSchedule['season']['name'],
             ], [
-                'level' => $game['level'],
                 'opponent_location' => $matchData['opponentHomeLocationName'] ?? null,
-                'opponent' => $matchData['opponentName'] ?? null,
                 'is_global' => $matchData['opponentName'] == 'The World',
+                'status' => $matchData['status'] ?? 'upcoming',
+                // game data
+                'game_id' => $gameId,
+                'result' => $game['result'] ?? 'pending',
+                'level' => $game['level'] ?? null,
+                'score_type' => $game['scoreType'] ?? 'default',
+                'score' => $game['score'] ?? 0,
+                'opponent_score' => $game['opponentScore'] ?? 0,
             ]);
         }
     }

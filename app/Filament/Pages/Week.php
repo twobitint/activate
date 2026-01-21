@@ -37,7 +37,7 @@ class Week extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(Matchup::query()->where('week', 1))
+            ->query(Matchup::query()->where('week', config('activate.current_week')))
             ->columns([
                 Split::make([
                     Split::make([

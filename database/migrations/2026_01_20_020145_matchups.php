@@ -15,17 +15,25 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('game_id')
-                ->constrained('games')
-                ->onDelete('cascade');
-
+            // Keys
             $table->string('season');
             $table->integer('week');
-            $table->integer('level');
+            $table->string('opponent')->nullable();
+
+            $table->foreignId('game_id')->nullable()
+                ->constrained('games')
+                ->nullOnDelete();
+
+            $table->integer('level')->nullable();
 
             $table->string('opponent_location')->nullable();
-            $table->string('opponent')->nullable();
             $table->boolean('is_global')->default(false);
+
+            $table->integer('score')->default(0);
+            $table->integer('opponent_score')->default(0);
+            $table->string('result')->default('pending');
+            $table->string('status')->default('upcoming');
+            $table->string('score_type')->default('default');
         });
     }
 
