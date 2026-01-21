@@ -61,7 +61,9 @@ Route::get('/auth/callback', function ()
 
     $player = Player::where('email', $email)->first();
 
-    Auth::login($player);
+    if ($player) {
+        Auth::login($player);
+    }
 
     return redirect('/');
 });
