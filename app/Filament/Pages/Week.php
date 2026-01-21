@@ -14,6 +14,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
 
 class Week extends Page implements HasTable
 {
@@ -55,6 +56,16 @@ class Week extends Page implements HasTable
                                 ->size(TextSize::ExtraSmall)
                                 ->sortable(),
                         ]),
+                        TextColumn::make('opponentStanding.wins')
+                            ->label('Opponent')
+                            ->getStateUsing(fn ($record) =>
+                                $record->is_global ? '🌐 The World' : $record->opponentStanding->record
+                            ),
+                            // ->description(fn ($record) =>
+                            //     $record->is_global ? null : new HtmlString(
+                            //         "{$record->opponent} <br><span style='font-size: 0.8em; color: gray;'>{$record->opponent_location}</span>"
+                            //     )
+                            // ),
                     ])->from('md'),
                     TextColumn::make('participants')
                         ->badge()
