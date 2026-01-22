@@ -58,14 +58,14 @@ class Week extends Page implements HasTable
                             ->getStateUsing(fn ($record) =>
                                 $record->is_global ? '🌐 The World' : $record->opponentStanding->record
                             ),
-                    ]),
+                    ])->grow(),
                     TextColumn::make('participants')
                         // ->description('Participants', 'above')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
                         ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
                         ->wrap()
-                        ->grow(false),
+                        ->alignEnd(),
                 ])
                 ->from('sm')
                 ->extraAttributes(['style' => 'gap: 1.25rem;']),

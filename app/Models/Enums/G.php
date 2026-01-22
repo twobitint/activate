@@ -138,6 +138,10 @@ enum G: int
             self::Seeker => 5,
             self::MegaGrid => 5,
             self::Numbers => 5,
+            self::Grid => 3,
+            self::MegaZones => 3,
+            self::Zones => 3,
+            self::Supermarket => 3,
             default => 4,
         };
     }
