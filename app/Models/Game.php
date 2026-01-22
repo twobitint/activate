@@ -14,6 +14,7 @@ class Game extends Model
     public function players()
     {
         return $this->belongsToMany(Player::class)
-            ->using(GamePlayer::class);
+            ->using(GamePlayer::class)
+            ->withPivot('skill', 'best_level', 'level_3_score', 'level_4_score', 'level_5_score', 'level_6_score');
     }
 }

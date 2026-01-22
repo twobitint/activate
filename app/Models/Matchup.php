@@ -30,7 +30,6 @@ class Matchup extends Model
     {
         return Attribute::get(fn () =>
             $this->game->players()
-                ->withPivot('skill')
                 ->where('game_player.skill', '>', Skill::Neutral->value)
                 ->orderBy('game_player.skill', 'desc')
                 ->whereIn('player_id', $this->activePlayers->pluck('id'))
@@ -42,7 +41,6 @@ class Matchup extends Model
     {
         return Attribute::get(fn () =>
             $this->game->players()
-                ->withPivot('skill')
                 ->where('game_player.skill', '<', Skill::Neutral->value)
                 ->where('game_player.skill', '!=', Skill::Unknown->value)
                 ->orderBy('game_player.skill', 'desc')
@@ -55,7 +53,6 @@ class Matchup extends Model
     {
         return Attribute::get(fn () =>
             $this->game->players()
-                ->withPivot('skill', 'best_level', 'level_3_score', 'level_4_score')
                 ->orderBy('game_player.skill', 'desc')
                 ->limit($this->game->optimal_players)
                 ->whereIn('player_id', $this->activePlayers->pluck('id'))

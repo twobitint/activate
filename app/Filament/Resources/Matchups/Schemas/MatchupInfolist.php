@@ -56,7 +56,7 @@ class MatchupInfolist
                     ->columnSpanFull()
                     ->table([
                         TableColumn::make('Player'),
-                        TableColumn::make('Level Score'),
+                        TableColumn::make("Level {$record->level} Score"),
                         TableColumn::make('Preference'),
                         TableColumn::make('Highest Level Completed'),
                     ])
