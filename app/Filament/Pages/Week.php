@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\Matchups\MatchupResource;
 use App\Models\Enums\Skill;
 use BackedEnum;
 use App\Models\Matchup;
@@ -69,6 +70,7 @@ class Week extends Page implements HasTable
                 ->from('sm')
                 ->extraAttributes(['style' => 'gap: 1.25rem;']),
             ])
+            ->recordUrl(fn ($record) => MatchupResource::getUrl('view', ['record' => $record]))
             ->paginated(false);
     }
 }

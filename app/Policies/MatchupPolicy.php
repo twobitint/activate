@@ -36,7 +36,7 @@ class MatchupPolicy
      */
     public function update(Player $user, Matchup $matchup): bool
     {
-        return false;
+        return true;
     }
 
     /**
