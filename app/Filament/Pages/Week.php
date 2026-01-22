@@ -44,35 +44,30 @@ class Week extends Page implements HasTable
                     Split::make([
                         TextColumn::make('game.room')
                             ->label('Room')
-                            //->searchable()
+                            ->description('Room', 'above')
                             ->sortable(),
-                        Stack::make([
-                            TextColumn::make('game.name')
-                                ->label('Game')
-                                ->sortable(),
-                            TextColumn::make('level')
-                                ->formatStateUsing(fn ($state) => 'Level '.$state)
-                                ->color('gray')
-                                ->size(TextSize::ExtraSmall)
-                                ->sortable(),
-                        ]),
+                        TextColumn::make('game.name')
+                            ->description('Game', 'above')
+                            ->formatStateUsing(fn ($state, $record) => $state.' '.$record->level)
+                            ->label('Game')
+                            ->sortable(),
                         TextColumn::make('opponentStanding.wins')
+                            ->description('Opponent', 'above')
                             ->label('Opponent')
                             ->getStateUsing(fn ($record) =>
                                 $record->is_global ? '🌐 The World' : $record->opponentStanding->record
                             ),
-                            // ->description(fn ($record) =>
-                            //     $record->is_global ? null : new HtmlString(
-                            //         "{$record->opponent} <br><span style='font-size: 0.8em; color: gray;'>{$record->opponent_location}</span>"
-                            //     )
-                            // ),
-                    ])->from('md'),
+                    ]),
                     TextColumn::make('participants')
+                        // ->description('Participants', 'above')
                         ->badge()
                         ->formatStateUsing(fn ($state) => $state->name)
                         ->color(fn ($state) => $state->pivot->skill?->getColor() ?? Skill::Unknown->getColor())
-                        ->wrap(),
-                ]),
+                        ->wrap()
+                        ->grow(false),
+                ])
+                ->from('sm')
+                ->extraAttributes(['style' => 'gap: 1.25rem;']),
             ])
             ->paginated(false);
     }
