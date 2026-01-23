@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('standings', function (Blueprint $table) {
-            $table->decimal('rpi', 4, 3)->nullable()->after('strength_of_schedule');
+            $table->decimal('rpi', 4, 3)->nullable();
         });
     }
 
