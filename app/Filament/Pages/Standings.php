@@ -45,6 +45,12 @@ class Standings extends Page implements HasTable
                 TextColumn::make('record')
                     ->label('Record')
                     ->sortable(),
+                TextColumn::make('rpi')
+                    ->label('Power')
+                    ->sortable(),
+                TextColumn::make('strength_of_schedule')
+                    ->label('Strength of Schedule')
+                    ->sortable(),
                 TextColumn::make('wins')
                     ->label('Wins')
                     ->sortable(),
@@ -53,12 +59,6 @@ class Standings extends Page implements HasTable
                     ->sortable(),
                 TextColumn::make('ties')
                     ->label('Ties')
-                    ->sortable(),
-                TextColumn::make('strength_of_schedule')
-                    ->label('Strength of Schedule')
-                    ->sortable(),
-                TextColumn::make('rpi')
-                    ->label('RPI')
                     ->sortable(),
             ])->paginated(false);
     }
