@@ -27,7 +27,7 @@ class MatchupInfolist
                             ->label('Team'),
                         TextEntry::make('opponentStanding.record')
                             ->label('Record'),
-                        TextEntry::make('opponentStanding.rpiFormatted')
+                        TextEntry::make('opponentStanding.strength_of_schedule')
                             ->label('Strength'),
                     ]),
                 Fieldset::make('Game details')

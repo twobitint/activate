@@ -59,7 +59,7 @@ class Week extends Page implements HasTable
                                 $record->is_global ? '🌐 The World' : $record->opponentStanding->record
                             )->formatStateUsing(fn ($state, $record) =>
                                 $record->is_global ? '🌐 The World' :
-                                    new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->rpi}</small>")
+                                    new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->strength_of_schedule}</small>")
                             )
                     ])->grow(),
                     TextColumn::make('participants')

@@ -59,6 +59,43 @@ class UpdateLeaderboardData extends Command
         }
 
         $this->handleRatingPercentageIndex();
+        $this->handleStrengthOfSchedule();
+    }
+
+    public function handleStrengthOfSchedule()
+    {
+        $teamMatches = Storage::json('opponents.json');
+        $standings = Standing::all()->keyBy('team');
+
+        foreach ($teamMatches as $teamName => $matches) {
+
+            $totalOpponentWins = 0;
+            $totalOpponentTies = 0;
+            $totalOpponentGames = 0;
+
+            foreach ($matches as $match) {
+                if (!isset($match['opponentName']) || $match['opponentName'] === $teamName || $match['opponentName'] === 'The World') {
+                    continue;
+                }
+
+                $opponentStanding = $standings[$match['opponentName']];
+                $totalOpponentWins += $opponentStanding->wins;
+                $totalOpponentTies += $opponentStanding->ties;
+                $totalOpponentGames += $opponentStanding->wins + $opponentStanding->losses + $opponentStanding->ties;
+            }
+
+            if ($totalOpponentGames === 0) {
+                $sos = 0;
+            } else {
+                $sos = ($totalOpponentWins + ($totalOpponentTies * 0.5)) / $totalOpponentGames;
+            }
+
+            Standing::where('team', $teamName)->update([
+                'strength_of_schedule' => round($sos, 3),
+            ]);
+
+            $this->line("Updated {$teamName} SoS: " . number_format($sos, 3));
+        }
     }
 
     public function handleRatingPercentageIndex()

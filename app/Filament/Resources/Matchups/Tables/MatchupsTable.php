@@ -58,7 +58,7 @@ class MatchupsTable
                             $record->is_global ? '🌐 The World' : $record->opponentStanding->record
                         )->formatStateUsing(fn ($state, $record) =>
                             $record->is_global ? '🌐 The World' :
-                                new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->rpi}</small>")
+                                new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->strength_of_schedule}</small>")
                         )
                         ->description(fn ($record) =>
                             $record->is_global ? null : new HtmlString(
