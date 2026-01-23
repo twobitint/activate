@@ -21,6 +21,7 @@ const fs = require('fs');
 
   // const matches = response.props.teamSchedule.matches;
   let opponents = {
+    'For Fun Friends': '926498926901592192',
     'Northern Valkyries ': '903692259239657600',
     'Bridge Four': '927903890744017024',
     'Lord Farquaad Squad': '911704340694040704',
@@ -47,7 +48,7 @@ const fs = require('fs');
     'Fasts': '927954580107427840',
     'Ctrl + Alt + Elite': '918967800809128064',
     'The Magicians': '909468997441814528',
-    'KookySnow': '911630349744734208',
+    'KookySnow ': '911630349744734208',
     'deactivate . * ･ ｡ﾟ☆━੧༼ •́ ヮ •̀ ༽୨': '928037198886862976',
     'Buffalo is Buffalo': '904840397241450624',
     'Couch Potatoes': '908624029437394944',
@@ -79,7 +80,7 @@ const fs = require('fs');
   }
 
   const prettyOpponents = JSON.stringify(opponents, null, 2);
-  fs.writeFileSync('storage/app/private/opponents.json', prettyOpponents);
+  fs.writeFileSync('storage/app/private/matches.json', prettyOpponents);
 
 })();
 

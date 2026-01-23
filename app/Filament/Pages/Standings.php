@@ -3,21 +3,13 @@
 namespace App\Filament\Pages;
 
 use App\Models\Standing;
-use UnitEnum;
-use App\Filament\Resources\Matchups\MatchupResource;
-use App\Models\Enums\Skill;
 use BackedEnum;
-use App\Models\Matchup;
 use Filament\Pages\Page;
-use Filament\Support\Enums\TextSize;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
-use Illuminate\Support\HtmlString;
 
 class Standings extends Page implements HasTable
 {
@@ -31,7 +23,7 @@ class Standings extends Page implements HasTable
     // nav label
     protected static ?string $navigationLabel = 'Standings';
 
-    protected static UnitEnum|string|null $navigationGroup = 'Research';
+    // protected static UnitEnum|string|null $navigationGroup = 'Research';
 
     // page title
     public function getTitle(): string
@@ -65,9 +57,9 @@ class Standings extends Page implements HasTable
                 TextColumn::make('strength_of_schedule')
                     ->label('Strength of Schedule')
                     ->sortable(),
-                // TextColumn::make('rpiFormatted')
-                //     ->label('RPI')
-                //     ->sortable(),
+                TextColumn::make('rpi')
+                    ->label('RPI')
+                    ->sortable(),
             ])->paginated(false);
     }
 }
