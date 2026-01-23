@@ -21,11 +21,14 @@ class MatchupInfolist
             ->columns(2)
             ->components(fn ($record) => [
                 Fieldset::make('Our opponent')
+                    ->columns(3)
                     ->schema([
                         TextEntry::make('opponent')
                             ->label('Team'),
                         TextEntry::make('opponentStanding.record')
                             ->label('Record'),
+                        TextEntry::make('opponentStanding.rpiFormatted')
+                            ->label('Strength'),
                     ]),
                 Fieldset::make('Game details')
                     ->schema([

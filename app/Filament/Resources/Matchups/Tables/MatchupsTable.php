@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Matchups\Tables;
 
 use App\Models\Enums\Skill;
 use App\Models\Matchup;
+use Filament\Support\Enums\TextSize;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -55,6 +56,9 @@ class MatchupsTable
                         ->label('Opponent')
                         ->getStateUsing(fn ($record) =>
                             $record->is_global ? '🌐 The World' : $record->opponentStanding->record
+                        )->formatStateUsing(fn ($state, $record) =>
+                            $record->is_global ? '🌐 The World' :
+                                new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->rpi}</small>")
                         )
                         ->description(fn ($record) =>
                             $record->is_global ? null : new HtmlString(
@@ -62,6 +66,12 @@ class MatchupsTable
                             )
                         )
                         ->sortable(),
+                    TextColumn::make('notes')
+                        ->label('Notes')
+                        ->toggleable()
+                        ->size(TextSize::ExtraSmall)
+                        ->html()
+                        ->wrap(),
             ])->filters([
                 SelectFilter::make('week')
                     ->options(fn () =>

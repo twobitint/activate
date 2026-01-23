@@ -57,7 +57,10 @@ class Week extends Page implements HasTable
                             ->label('Opponent')
                             ->getStateUsing(fn ($record) =>
                                 $record->is_global ? '🌐 The World' : $record->opponentStanding->record
-                            ),
+                            )->formatStateUsing(fn ($state, $record) =>
+                                $record->is_global ? '🌐 The World' :
+                                    new HtmlString("{$state} <small style=\"color: gray;\">{$record->opponentStanding->rpi}</small>")
+                            )
                     ])->grow(),
                     TextColumn::make('participants')
                         // ->description('Participants', 'above')
