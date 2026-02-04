@@ -56,21 +56,21 @@ class MatchupInfolist
                                     ->hiddenLabel(),
                             ]),
                     ]),
-                RepeatableEntry::make('participants')
-                    ->label('Stats')
-                    ->columnSpanFull()
-                    ->table([
-                        TableColumn::make('Player'),
-                        TableColumn::make("Level {$record->level} Score"),
-                        TableColumn::make('Preference'),
-                        TableColumn::make('Highest Level Completed'),
-                    ])
-                    ->schema([
-                        TextEntry::make('name'),
-                        TextEntry::make("pivot.level_{$record->level}_score"),
-                        TextEntry::make('pivot.skill'),
-                        TextEntry::make('pivot.best_level'),
-                    ]),
+                // RepeatableEntry::make('participants')
+                //     ->label('Stats')
+                //     ->columnSpanFull()
+                //     ->table([
+                //         TableColumn::make('Player'),
+                //         TableColumn::make("Level {$record->level} Score"),
+                //         TableColumn::make('Preference'),
+                //         TableColumn::make('Highest Level Completed'),
+                //     ])
+                //     ->schema([
+                //         TextEntry::make('name'),
+                //         TextEntry::make("pivot.level_{$record->level}_score"),
+                //         TextEntry::make('pivot.skill'),
+                //         TextEntry::make('pivot.best_level'),
+                //     ]),
             ]);
     }
 }
