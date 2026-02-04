@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Player;
+use App\Services\LeagueScoresSpreadsheetService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
@@ -27,6 +28,9 @@ Route::get('leaderboard', fn () =>
 //     json_decode(Storage::get('hoops.json'))
 // );
 
+Route::get('scores', fn (LeagueScoresSpreadsheetService $service) =>
+    $service->make()
+);
 
 
 Route::get('/login', function ()

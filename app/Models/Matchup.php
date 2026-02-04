@@ -29,7 +29,7 @@ class Matchup extends Model
     public function skilledPlayers(): Attribute
     {
         return Attribute::get(fn () =>
-            $this->game->players()
+            $this->game?->players()
                 ->where('game_player.skill', '>', Skill::Neutral->value)
                 ->orderBy('game_player.skill', 'desc')
                 ->whereIn('player_id', $this->activePlayers->pluck('id'))
@@ -40,7 +40,7 @@ class Matchup extends Model
     public function unskilledPlayers(): Attribute
     {
         return Attribute::get(fn () =>
-            $this->game->players()
+            $this->game?->players()
                 ->where('game_player.skill', '<', Skill::Neutral->value)
                 ->where('game_player.skill', '!=', Skill::Unknown->value)
                 ->orderBy('game_player.skill', 'desc')
@@ -52,7 +52,7 @@ class Matchup extends Model
     public function participants(): Attribute
     {
         return Attribute::get(fn () =>
-            $this->game->players()
+            $this->game?->players()
                 ->orderBy('game_player.skill', 'desc')
                 ->limit($this->game->optimal_players)
                 ->whereIn('player_id', $this->activePlayers->pluck('id'))

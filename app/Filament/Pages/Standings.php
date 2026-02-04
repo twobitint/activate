@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Standing;
 use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -29,6 +30,16 @@ class Standings extends Page implements HasTable
     public function getTitle(): string
     {
         return 'Standings';
+    }
+
+    public function getHeaderActions(): array
+    {
+        return [
+            Action::make('scores')
+                ->label('Download all scores')
+                ->url('scores')
+                ->openUrlInNewTab(),
+        ];
     }
 
     public function table(Table $table): Table
